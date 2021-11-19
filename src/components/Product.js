@@ -1,13 +1,25 @@
-import React from 'react'
+import React from "react";
+
+import "../styles/product.css";
 
 function Product({ product }) {
-    return (
-        <div>
-            <h1>{product.name}</h1>
-            <h2>{product.price}</h2>
-            <h3>{product.description}</h3>
+  return (
+    <div className="product">
+      <img className="productImage" src={product.image} alt={product.name} />
+      <div className="productInfo">
+        <div className="nameAndPrice">
+          <h2 className="productName">{product.name}</h2>
+          <strong className="productPrice">
+            {product.price.toLocaleString("en-US", {
+              style: "currency",
+              currency: "USD",
+            })}
+          </strong>
         </div>
-    )
+        <p className="productDescription">{product.description}</p>
+      </div>
+    </div>
+  );
 }
 
-export default Product
+export default Product;

@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from "react";
 
+import { Link } from 'react-router-dom'
+
 import "../../styles/home.css";
 import api from "../../services/api";
 
@@ -19,14 +21,18 @@ function Home() {
   }, []);
 
   return (
-    <div>
+    <div className="home">
       <Header />
-      <h1>Products</h1>
-      <div className="products">
-        {products.map((product) => (
-          <Product key={product._id} product={product} />
-        ))}
-      </div>
+      <main>
+        <h1 className="title">Products</h1>
+        <div className="products">
+          {products.map((product) => (
+            <Link className="productLink" key={product._id} to={`/product/${product._id}`}>
+              <Product product={product} />
+            </Link>
+          ))}
+        </div>
+      </main>
     </div>
   );
 }

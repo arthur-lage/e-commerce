@@ -1,0 +1,28 @@
+.home main {
+  padding: 0 4rem;
+}
+
+.home .title {
+  margin-top: 3rem;
+  font-family: "Poppins", sans-serif;
+  font-size: 3rem;
+}
+
+.home .products {
+  margin-top: 2.5rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.productLink {
+  margin: 1.5rem 0;
+  text-decoration: none;
+}
+
+.productLink:first-child {
+  margin-top: 0;
+}
+
+.productLink:last-child {
+  margin-bottom: 0;
+}

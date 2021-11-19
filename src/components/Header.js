@@ -10,12 +10,12 @@ function Header() {
   const [searchText, setSearchText] = useState("");
 
   const handleSearch = () => {
-    if(searchActive && searchText != ""){
+    if(searchActive && searchText !== ""){
         return
     }
 
     if(!searchActive) setSearchActive(true)
-    if(searchActive && searchText == "") setSearchActive(false)
+    if(searchActive && searchText === "") setSearchActive(false)
   };
 
   return (
