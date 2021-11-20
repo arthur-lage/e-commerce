@@ -1,5 +1,7 @@
 .home main {
-  padding: 0 4rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .home .title {

@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react";
 import { useParams, Link } from "react-router-dom";
 import api from "../../services/api";
 
+import '../../styles/search-page.css'
+
 import Product from "../../components/Product";
 import Header from "../../components/Header";
 
@@ -27,22 +29,26 @@ function SearchPage() {
   return (
     <div className="searchPage">
       <Header />
-      <h1>Searches for "{productToSearch}"</h1>
-      {products.length > 0 ? (
+      <main>
+        <h1 className="title">Searches for "{productToSearch}"</h1>
+        {products.length > 0 ? (
           <div className="products">
-          {products.map((product) => (
-            <Link
-              className="productLink"
-              key={product._id}
-              to={`/product/${product._id}`}
-            >
-              <Product product={product} />
-            </Link>
-          ))}
-        </div>
-      ) : (
-          <p>No results for "{productToSearch}"</p>
-      )}
+            {products.map((product) => (
+              <Link
+                className="productLink"
+                key={product._id}
+                to={`/product/${product._id}`}
+              >
+                <Product product={product} />
+              </Link>
+            ))}
+          </div>
+        ) : (
+          <div className="no-results">
+            <p>No results for "{productToSearch}"</p>
+          </div>
+        )}
+      </main>
     </div>
   );
 }

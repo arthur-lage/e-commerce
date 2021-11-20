@@ -27,8 +27,9 @@ function Header() {
       setSearchActive(true)
       document.querySelector(".searchInput").focus()
     }
+
     if(searchActive && searchText === "") setSearchActive(false)
-  };
+  }
 
   return (
     <header className="header">

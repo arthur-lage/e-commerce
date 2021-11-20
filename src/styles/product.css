@@ -2,16 +2,16 @@
   display: flex;
   border-radius: 6px;
   align-items: center;
-  width: 80rem;
+  width: 100rem;
   cursor: pointer;
   padding: 0 2rem 0 0;
   background: transparent;
-  transition: .2s ease;
+  transition: 0.2s ease;
   font-family: "Roboto", sans-serif;
 }
 
-.product:hover{
-    background: rgba(0, 0, 0, 0.4);
+.product:hover {
+  background: rgba(0, 0, 0, 0.2);
 }
 
 .product .productImage {
@@ -22,7 +22,7 @@
 
 .product .productInfo {
   display: flex;
-  width: 80rem;
+  width: 100%;
   flex-direction: column;
   margin-left: 3rem;
 
