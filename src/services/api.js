@@ -21,6 +21,9 @@ const api = {
   async deleteByID(id) {
     await axios.delete(`${baseURL}/products/delete/${id}`);
   },
+  async search(name){
+    return await axios.get(`${baseURL}/products/search/${name}`);
+  }
 };
 
 export default api;

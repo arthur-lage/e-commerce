@@ -21,7 +21,7 @@ function ProductPage() {
 
   return (
     <div>
-        <Header />
+      <Header />
       Product Page
       <div>
         <img width="150" src={productInfo.image} alt={productInfo.name} />

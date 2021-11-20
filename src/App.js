@@ -11,6 +11,7 @@ import {
 import Home from "./pages/Home";
 import Profile from "./pages/Profile";
 import ProductPage from "./pages/ProductPage";
+import SearchPage from "./pages/SearchPage";
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
         <Route exact path="/" element={<Home />} />
         <Route exact path="/product/:id" element={<ProductPage />} />
         <Route exact path="/profile" element={<Profile />} />
+        <Route exact path="/search/:name" element={<SearchPage />} />
       </Switch>
     </Router>
   );

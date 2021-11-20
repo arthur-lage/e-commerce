@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 
+import { useNavigate, useLocation } from 'react-router-dom'
+
 import LogoImage from "../images/logo.png";
 
 import "../styles/header.css";
@@ -8,13 +10,23 @@ import "../styles/header.css";
 function Header() {
   const [searchActive, setSearchActive] = useState(false);
   const [searchText, setSearchText] = useState("");
+  const navigate = useNavigate()
+  const location = useLocation()
 
   const handleSearch = () => {
     if(searchActive && searchText !== ""){
-        return
+      if(location.pathname.includes("/search")){
+        navigate('/search/' + searchText)
+        navigate(0)
+      } else {
+        navigate('/search/' + searchText)
+      }
     }
 
-    if(!searchActive) setSearchActive(true)
+    if(!searchActive) {
+      setSearchActive(true)
+      document.querySelector(".searchInput").focus()
+    }
     if(searchActive && searchText === "") setSearchActive(false)
   };
 
