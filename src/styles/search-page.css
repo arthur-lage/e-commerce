@@ -2,6 +2,7 @@
   display: flex;
   align-items: center;
   flex-direction: column;
+  animation: fade .5s ease 1 forwards;
 }
 
 .searchPage .title {
@@ -36,4 +37,14 @@
 
 .searchPage main .productLink:last-child {
   margin-bottom: 0;
+}
+
+@keyframes fade {
+  0%{
+    opacity: 0;
+  }
+
+  100%{
+    opacity: 1;
+  }
 }

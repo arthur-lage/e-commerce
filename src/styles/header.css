@@ -4,6 +4,7 @@
   justify-content: space-between;
   padding: 2rem 4rem;
   background: #333999;
+  box-shadow: 0px 5px 10px 1px rgba(0,0,0,0.5);
 }
 
 .header img {
@@ -43,13 +44,19 @@
   outline: none;
   border: 0;
   padding: 1rem 1rem 1rem 1.5rem;
+  border: 2.5px solid transparent; 
   font-size: 1.8rem;
   font-family: "Open Sans", sans-serif;
 }
 
 .header .searchInput.active {
   width: 45rem;
+  transition: .2s ease;
   opacity: 1;
+}
+
+.header .searchInput.active:focus {
+  border: 2.5px solid #4eaee6;
 }
 
 .header .searchButton {

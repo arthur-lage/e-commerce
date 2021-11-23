@@ -13,6 +13,12 @@ function Header() {
   const navigate = useNavigate()
   const location = useLocation()
 
+  const handleHome = () => {
+    if(location.pathname === "/"){
+      navigate(0)
+    }
+  }
+
   const handleSearch = () => {
     if(searchActive && searchText !== ""){
       if(location.pathname.includes("/search")){
@@ -33,7 +39,7 @@ function Header() {
 
   return (
     <header className="header">
-      <Link to="/">
+      <Link onClick={handleHome} to="/">
         <img src={LogoImage} alt="E-Shop" />
       </Link>
       <nav>

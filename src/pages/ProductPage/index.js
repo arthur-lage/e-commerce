@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import Header from "../../components/Header";
+import Star from "../../components/Star";
 
 import api from "../../services/api";
 
@@ -8,14 +9,15 @@ import "../../styles/product-page.css";
 
 function ProductPage() {
   const [productInfo, setProductInfo] = useState({});
+  const [loading, setLoading] = useState(true);
   const productID = useParams().id;
   const navigate = useNavigate();
 
   useEffect(() => {
     async function fetchData() {
       const response = await api.getByID(productID);
-      console.log(response.data);
       setProductInfo(response.data);
+      setLoading(false);
     }
 
     fetchData();
@@ -34,21 +36,61 @@ function ProductPage() {
   return (
     <div className="productPage">
       <Header />
-      <main>
-        Product Page
-        <div>
-          <img width="150" src={productInfo.image} alt={productInfo.name} />
-          <p>{productInfo.name}</p>
-          <p>{productInfo.price}</p>
-          <p>{productInfo.description}</p>
-        </div>
-        <button onClick={handleBuy} className="buyButton">
-          Buy
-        </button>
-        <button onClick={handleCart} className="cartButton">
-          Add to cart
-        </button>
-      </main>
+      {loading ? (
+        <h1>Loading...</h1>
+      ) : (
+        <main>
+          <section className="productSection">
+            <div className="left">
+              <img src={productInfo.image} alt={productInfo.name} />
+            </div>
+            <div className="right">
+              <div className="productInfo">
+                <h2>{productInfo.name}</h2>
+                <div className="rating">
+                  {productInfo.rating
+                    ? productInfo.rating.map((star, key) => (
+                        <Star key={key} star={star} />
+                      ))
+                    : ""}
+                  <div className="ratingGrade">
+                    <span>{productInfo.ratingGrade}</span>
+                  </div>
+                </div>
+                <h3>
+                  Price:{" "}
+                  {productInfo.price.toLocaleString("en-US", {
+                    style: "currency",
+                    currency: "USD",
+                  })}
+                </h3>
+                <h4>
+                  10x of{" "}
+                  {(productInfo.price / 10).toLocaleString("en-US", {
+                    style: "currency",
+                    currency: "USD",
+                  })}
+                </h4>
+              </div>
+              <div className="actions">
+                <button onClick={handleBuy} className="action buyButton">
+                  <i className="fas fa-shopping-bag"></i>
+                  Buy
+                </button>
+                <button onClick={handleCart} className="action cartButton">
+                  <i className="fas fa-shopping-cart"></i>
+                  Add to cart
+                </button>
+              </div>
+            </div>
+          </section>
+          <section className="productDescription">
+            <h2>Description</h2>
+            <p>{productInfo.description}</p>
+          </section>
+          <section className="productComments"></section>
+        </main>
+      )}
     </div>
   );
 }
