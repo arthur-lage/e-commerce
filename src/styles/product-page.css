@@ -3,9 +3,6 @@
   flex-direction: column;
 }
 
-.productPage {
-}
-
 .productPage .productSection {
   display: flex;
   align-items: center;
@@ -131,4 +128,42 @@
   font-family: "Open Sans", sans-serif;
   margin-top: 1.5rem;
   padding-right: 15rem;
+}
+
+.productPage .loadingIcon div{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.productPage .divisor{
+  position: relative;
+  margin-top: 5rem;
+}
+
+.productPage .divisor::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 90vw;
+  height: 1px;
+  background: #1e65cf;
+}
+
+.productPage .productComments {
+  margin-top: 5rem;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.productPage .productComments .commentsTitle{
+  align-self: flex-start;
+  padding-left: 10rem;
+  font-size: 2.2rem;
+  font-family: "Open Sans", sans-serif;
+  margin-bottom: 3rem;
 }

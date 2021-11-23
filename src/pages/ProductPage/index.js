@@ -3,6 +3,10 @@ import { useParams, useNavigate } from "react-router-dom";
 import Header from "../../components/Header";
 import Star from "../../components/Star";
 
+import ReactLoading from 'react-loading'
+
+import ProductComment from '../../components/ProductComment'
+
 import api from "../../services/api";
 
 import "../../styles/product-page.css";
@@ -37,7 +41,9 @@ function ProductPage() {
     <div className="productPage">
       <Header />
       {loading ? (
-        <h1>Loading...</h1>
+        <div className="loadingIcon">
+          <ReactLoading type="spinningBubbles" color="#000" width="5%" height="5%" />
+        </div>
       ) : (
         <main>
           <section className="productSection">
@@ -84,11 +90,22 @@ function ProductPage() {
               </div>
             </div>
           </section>
+
+          <div className="divisor"></div>
+
           <section className="productDescription">
             <h2>Description</h2>
             <p>{productInfo.description}</p>
           </section>
-          <section className="productComments"></section>
+
+          <div className="divisor"></div>
+          
+          <section className="productComments">
+            <h2 className="commentsTitle">Comments</h2>
+            {productInfo.comments.map((comment, key) => (
+              <ProductComment key={key} commentContent={comment} />
+            ))}
+          </section>
         </main>
       )}
     </div>
