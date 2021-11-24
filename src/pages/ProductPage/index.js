@@ -3,9 +3,9 @@ import { useParams, useNavigate } from "react-router-dom";
 import Header from "../../components/Header";
 import Star from "../../components/Star";
 
-import ReactLoading from 'react-loading'
+import ReactLoading from "react-loading";
 
-import ProductComment from '../../components/ProductComment'
+import ProductComment from "../../components/ProductComment";
 
 import api from "../../services/api";
 
@@ -42,7 +42,12 @@ function ProductPage() {
       <Header />
       {loading ? (
         <div className="loadingIcon">
-          <ReactLoading type="spinningBubbles" color="#000" width="5%" height="5%" />
+          <ReactLoading
+            type="spinningBubbles"
+            color="#000"
+            width="5%"
+            height="5%"
+          />
         </div>
       ) : (
         <main>
@@ -60,7 +65,11 @@ function ProductPage() {
                       ))
                     : ""}
                   <div className="ratingGrade">
-                    <span>{productInfo.ratingGrade}</span>
+                    <span>
+                      {Number.isInteger(productInfo.ratingGrade)
+                        ? productInfo.ratingGrade + ".0"
+                        : productInfo.ratingGrade}
+                    </span>
                   </div>
                 </div>
                 <h3>
@@ -99,7 +108,7 @@ function ProductPage() {
           </section>
 
           <div className="divisor"></div>
-          
+
           <section className="productComments">
             <h2 className="commentsTitle">Comments</h2>
             {productInfo.comments.map((comment, key) => (

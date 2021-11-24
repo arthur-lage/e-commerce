@@ -1,7 +1,8 @@
 .comment {
   width: 85vw;
   padding: 20px;
-  border: 1px solid rgba(0, 0, 0, 0.333);
+  border: 1px solid rgba(30, 101, 207, 0.6);
+  border-radius: 5px;
   margin-bottom: 3rem;
 }
 
@@ -21,4 +22,28 @@
 
 .comment .text {
   font-size: 1.6rem;
+}
+
+.comment .authorAndRating{
+  display: flex;
+  align-items: center;
+}
+
+.comment .rating {
+  display: flex;
+  margin-left: 1.5rem;
+  align-items: center;
+}
+
+.comment .rating .ratingText{
+  margin-left: 1rem;
+  font-weight: 700;
+  font-size: 1.8rem;
+  font-family: "Roboto", sans-serif;
+}
+
+.comment .rating i {
+  color: #1e65cf;
+  font-size: 1.8rem;
+  margin-right: 0.3rem;
 }

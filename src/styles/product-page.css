@@ -154,6 +154,7 @@
 
 .productPage .productComments {
   margin-top: 5rem;
+  margin-bottom: 2.5rem;
   display: flex;
   align-items: center;
   flex-direction: column;
