@@ -23,6 +23,9 @@ const api = {
   },
   async search(name){
     return await axios.get(`${baseURL}/products/search/${name}`);
+  },
+  async calculateRating(id){
+    return await axios.patch(`${baseURL}/products/calculate-rating/${id}`)
   }
 };
 

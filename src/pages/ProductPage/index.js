@@ -24,6 +24,11 @@ function ProductPage() {
       setLoading(false);
     }
 
+    async function updateRating() {
+      await api.calculateRating(productID);
+    }
+
+    updateRating();
     fetchData();
     // eslint-disable-next-line
   }, []);
@@ -68,7 +73,7 @@ function ProductPage() {
                     <span>
                       {Number.isInteger(productInfo.ratingGrade)
                         ? productInfo.ratingGrade + ".0"
-                        : productInfo.ratingGrade}
+                        : productInfo.ratingGrade.toFixed(1)}
                     </span>
                   </div>
                 </div>
