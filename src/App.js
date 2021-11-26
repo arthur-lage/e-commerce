@@ -1,6 +1,6 @@
 import "./styles/global.css";
 
-import React from "react";
+import React, { useEffect } from "react";
 
 import {
   BrowserRouter as Router,
@@ -13,7 +13,13 @@ import Profile from "./pages/Profile";
 import ProductPage from "./pages/ProductPage";
 import SearchPage from "./pages/SearchPage";
 
+import utils from './services/utils'
+
 function App() {
+  useEffect(() => {
+    utils.checkCart()
+  }, [])
+
   return (
     <Router>
       <Switch>

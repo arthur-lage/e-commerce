@@ -26,6 +26,12 @@ const api = {
   },
   async calculateRating(id){
     return await axios.patch(`${baseURL}/products/calculate-rating/${id}`)
+  },
+  async addComment(productId, data){
+    return await axios.patch(`${baseURL}/products/comments/add/${productId}`, data)
+  },
+  async removeComment(productId, commentId){
+    return await axios.patch(`${baseURL}/products/comments/remove/${productId}/${commentId}`)
   }
 };
 

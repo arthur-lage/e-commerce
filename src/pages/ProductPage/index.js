@@ -14,6 +14,8 @@ import "../../styles/product-page.css";
 function ProductPage() {
   const [productInfo, setProductInfo] = useState({});
   const [loading, setLoading] = useState(true);
+  const [isLogged, setIsLogged] = useState(false)
+
   const productID = useParams().id;
   const navigate = useNavigate();
 
@@ -34,7 +36,15 @@ function ProductPage() {
   }, []);
 
   const handleCart = () => {
-    // add to cart
+    if(isLogged){
+      return
+    } else {
+      const cartList = JSON.parse(localStorage.getItem("e-shop:cart"))
+
+      cartList.push(productID)
+
+      localStorage.setItem("e-shop:cart", JSON.stringify(cartList))
+    }
   };
 
   const handleBuy = () => {
