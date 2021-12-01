@@ -2,6 +2,8 @@ import React from "react";
 
 import "../styles/product.css";
 
+import Star from "../components/Star";
+
 function Product({ product }) {
   return (
     <div className="product">
@@ -9,14 +11,34 @@ function Product({ product }) {
       <div className="productInfo">
         <div className="nameAndPrice">
           <h2 className="productName">{product.name}</h2>
-          <strong className="productPrice">
-            {product.price.toLocaleString("en-US", {
-              style: "currency",
-              currency: "USD",
-            })}
-          </strong>
+          <div className="productPrice">
+            <strong className="productPrice">
+              {product.price.toLocaleString("en-US", {
+                style: "currency",
+                currency: "USD",
+              })}
+            </strong>
+            <h4>
+              10x of{" "}
+              {(product.price / 10).toLocaleString("en-US", {
+                style: "currency",
+                currency: "USD",
+              })}
+            </h4>
+          </div>
         </div>
-        <p className="productDescription">{product.description}</p>
+        <div className="rating">
+          {product.rating
+            ? product.rating.map((star, key) => <Star key={key} star={star} />)
+            : ""}
+          <div className="ratingGrade">
+            <span>
+              {Number.isInteger(product.ratingGrade)
+                ? product.ratingGrade + ".0"
+                : product.ratingGrade.toFixed(1)}
+            </span>
+          </div>
+        </div>
       </div>
     </div>
   );

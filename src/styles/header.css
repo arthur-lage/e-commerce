@@ -84,3 +84,16 @@
   margin-left: 1rem;
   margin-right: 1.5rem;
 }
+
+.header .cartButton {
+  background: transparent;
+  transition: 0.2s ease;
+}
+
+.header .cartButton i {
+  color: white;
+  cursor: pointer;
+  font-size: 2.8rem;
+  margin-left: 1rem;
+  margin-right: 1rem;
+}

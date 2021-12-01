@@ -56,6 +56,9 @@ function Header() {
             </button>
           </li>
           <li>
+            <Link className="cartButton" to="/cart"><i className="fas fa-shopping-cart"></i></Link>
+          </li>
+          <li>
             <Link className="profileButton" to="/profile"><i className="fas fa-user"></i></Link>
           </li>
         </ul>

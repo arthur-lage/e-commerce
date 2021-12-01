@@ -14,6 +14,7 @@ import ProductPage from "./pages/ProductPage";
 import SearchPage from "./pages/SearchPage";
 
 import utils from './services/utils'
+import CartPage from "./pages/CartPage";
 
 function App() {
   useEffect(() => {
@@ -24,6 +25,7 @@ function App() {
     <Router>
       <Switch>
         <Route exact path="/" element={<Home />} />
+        <Route exact path="/cart" element={<CartPage />} />
         <Route exact path="/product/:id" element={<ProductPage />} />
         <Route exact path="/profile" element={<Profile />} />
         <Route exact path="/search/:name" element={<SearchPage />} />
