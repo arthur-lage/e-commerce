@@ -3,8 +3,24 @@ import React from "react";
 import "../styles/cart-item.css";
 
 import Star from "../components/Star";
+import { useNavigate } from "react-router";
 
 function CartItem({ itemInfo }) {
+  const navigate = useNavigate()
+
+  const handleBuy = () => {
+    navigate("/buy/" + itemInfo._id)
+  }
+
+  const handleRemoveFromCart = () => {
+    let newCartItemsArray = JSON.parse(localStorage.getItem("e-shop:cart"))
+    newCartItemsArray = newCartItemsArray.filter(product => product.id !== itemInfo._id)
+
+    localStorage.setItem("e-shop:cart", JSON.stringify(newCartItemsArray))
+
+    navigate(0)
+  }
+
   return (
     <div className="cartItem">
       <div className="image">
@@ -41,8 +57,8 @@ function CartItem({ itemInfo }) {
             </span>
           </div>
         </div>
-        <button>Buy</button>
-        <button>Remove from Cart</button>
+        <button onClick={handleBuy}>Buy</button>
+        <button onClick={handleRemoveFromCart} >Remove from Cart</button>
       </div>
     </div>
   );

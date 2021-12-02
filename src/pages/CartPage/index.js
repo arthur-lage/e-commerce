@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 
 import "../../styles/cart-page.css";
 
-import Header from '../../components/Header'
+import Header from "../../components/Header";
 import CartItem from "../../components/CartItem";
 
 import api from "../../services/api";
@@ -19,11 +19,11 @@ function CartPage() {
       async function getCartItems(id) {
         const newProduct = await api.getByID(id);
 
-        setCartItemsList([...cartItemsList, newProduct.data]);
+        setCartItemsList(cartItemsList => [...cartItemsList, newProduct.data]);
       }
 
-      idArray.forEach((id) => {
-        getCartItems(id);
+      idArray.forEach((product) => {
+        getCartItems(product.id);
       });
     }
   }, []);
@@ -36,9 +36,14 @@ function CartPage() {
 
       {cartItemsList.length > 0 ? (
         <div className="cartItems">
-          {cartItemsList.map((itemInfo, key) => (
-            <CartItem itemInfo={itemInfo} key={key} />
-          ))}
+          <div className="cartItems">
+            {cartItemsList.map((itemInfo, key) => (
+              <CartItem itemInfo={itemInfo} key={key} />
+            ))}
+          </div>
+          <div className="buy">
+            <h2>Total price: $55.75</h2>
+          </div>
         </div>
       ) : (
         <h2>Your Shopping Cart is empty</h2>

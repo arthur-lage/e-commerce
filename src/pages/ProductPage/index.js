@@ -3,6 +3,8 @@ import { useParams, useNavigate } from "react-router-dom";
 import Header from "../../components/Header";
 import Star from "../../components/Star";
 
+import toast, { Toaster } from 'react-hot-toast'
+
 import ReactLoading from "react-loading";
 
 import ProductComment from "../../components/ProductComment";
@@ -41,19 +43,26 @@ function ProductPage() {
     } else {
       const cartList = JSON.parse(localStorage.getItem("e-shop:cart"))
 
-      cartList.push(productID)
+      cartList.push({id: productID})
 
       localStorage.setItem("e-shop:cart", JSON.stringify(cartList))
+
+      toast.success("Product added to cart successfully", {
+        style: {
+          fontSize: "1.6rem",
+          fontFamily: "Poppins, sans-serif"
+        }
+      })
     }
   };
 
   const handleBuy = () => {
-    // check if is logged in
-    // navigate('/buy/' + productID)
+    navigate('/buy/' + productID)
   };
 
   return (
     <div className="productPage">
+      <Toaster/>
       <Header />
       {loading ? (
         <div className="loadingIcon">
