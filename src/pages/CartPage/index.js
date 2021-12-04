@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 
 import "../../styles/cart-page.css";
 
+import { Link } from "react-router-dom";
+
 import Header from "../../components/Header";
 import CartItem from "../../components/CartItem";
 
@@ -19,7 +21,10 @@ function CartPage() {
       async function getCartItems(id) {
         const newProduct = await api.getByID(id);
 
-        setCartItemsList(cartItemsList => [...cartItemsList, newProduct.data]);
+        setCartItemsList((cartItemsList) => [
+          ...cartItemsList,
+          newProduct.data,
+        ]);
       }
 
       idArray.forEach((product) => {
@@ -38,7 +43,13 @@ function CartPage() {
         <div className="cartItems">
           <div className="cartItems">
             {cartItemsList.map((itemInfo, key) => (
-              <CartItem itemInfo={itemInfo} key={key} />
+              <Link
+                className="productLink"
+                key={itemInfo._id}
+                to={`/product/${itemInfo._id}`}
+              >
+                <CartItem itemInfo={itemInfo} key={key} />
+              </Link>
             ))}
           </div>
           <div className="buy">

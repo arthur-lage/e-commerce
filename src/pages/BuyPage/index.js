@@ -3,6 +3,8 @@ import React, { useState, useEffect } from "react";
 import Cards from "react-credit-cards";
 import "react-credit-cards/es/styles-compiled.css";
 
+import toast, { Toaster } from "react-hot-toast";
+
 import api from "../../services/api";
 import { useParams, useNavigate } from "react-router-dom";
 
@@ -18,8 +20,13 @@ function BuyPage() {
   const [CPFText, setCPFText] = useState("");
 
   const [CEPText, setCEPText] = useState("");
+  const [rua, setRua] = useState("")
+  const [bairro, setBairro] = useState("")
+  const [cidade, setCidade] = useState("")
+  const [uf, setUf] = useState("")
   const [address2, setAddress2] = useState("");
   const [addressNumber, setAddressNumber] = useState("");
+
   const [CEPresult, setCEPresult] = useState({});
 
   const [cardNumber, setCardNumber] = useState("");
@@ -72,14 +79,6 @@ function BuyPage() {
   };
 
   const handleCardExpirationDate = (e) => {
-    if (cardExpirationDate.length === 3) {
-      setCardExpirationDate(cardExpirationDate.slice(0, -1));
-      return;
-    }
-
-    if (cardExpirationDate.length === 2) {
-      setCardExpirationDate(cardExpirationDate + "/");
-    }
   };
 
   // end handle inputs
@@ -142,10 +141,8 @@ function BuyPage() {
     }
 
     if (purchaseStep === 1) {
-      if (CEPText.length === 0 || CEPText.length < 8) {
+      if (!CEPresult) {
         setNextDisabled(true);
-      } else {
-        setNextDisabled(false);
       }
 
       if (Number(addressNumber) === 0 || addressNumber.length === "") {
@@ -193,27 +190,25 @@ function BuyPage() {
     cardCVC,
   ]);
 
-  useEffect(() => {
-    if (CEPText.length === 8) {
-      let isMounted = true;
-      const handleCEP = async () => {
-        let URL = "https://viacep.com.br/ws/" + CEPText + "/json/";
+  const handleCEP = async () => {
+    if (CEPText.length < 8) {
+      toast.error("CEP inválido", {
+        style: {
+          fontSize: "1.6rem",
+          fontFamily: "Poppins, sans-serif",
+        },
+      });
 
-        const response = await axios.get(URL);
-        if (isMounted) {
-          setCEPresult(response.data);
-        }
-      };
-
-      handleCEP();
-
-      return () => {
-        isMounted = false;
-      };
-    } else {
-      setNextDisabled(true);
+      return
     }
-  }, [CEPText]);
+
+    if (CEPText.length === 8) {
+      let URL = "https://viacep.com.br/ws/" + CEPText + "/json/";
+
+      const response = await axios.get(URL);
+      setCEPresult(response.data);
+    }
+  };
 
   useEffect(() => {
     async function fetchData() {
@@ -226,15 +221,44 @@ function BuyPage() {
   }, []);
 
   useEffect(() => {
-    if (CEPresult.erro) {
+    if (purchaseStep === 1 && CEPresult.erro) {
       setNextDisabled(true);
     }
-  }, [CEPresult]);
+
+    if (/[a-zA-Z]/g.test(CEPText)) {
+      setNextDisabled(true);
+    }
+
+    if(CEPText.length === 0){
+      setNextDisabled(true)
+    }
+
+    if(CEPText.length < 8){
+      setNextDisabled(true)
+    }
+  }, [CEPresult, purchaseStep, CEPText]);
+
+  useEffect(() => {
+    if(CEPresult.erro){
+      setRua("")
+      setBairro("")
+      setCidade("")
+      setUf("")
+    } 
+    
+    if(!CEPresult.erro) {
+      setRua(CEPresult.logradouro)
+      setBairro(CEPresult.bairro)
+      setCidade(CEPresult.localidade)
+      setUf(CEPresult.uf)
+    }
+  }, [CEPresult])
 
   // end useEffects
 
   return (
     <div className="buyPage">
+      <Toaster />
       <Header />
       <h1>Comprar produto</h1>
       <section className="currentStep">
@@ -284,20 +308,22 @@ function BuyPage() {
               <input
                 maxLength="8"
                 max="8"
-                onChange={(e) =>  setCEPText(e.target.value)}
+                onChange={(e) => setCEPText(e.target.value)}
                 value={CEPText}
                 placeholder="Digite o CEP para entrega"
                 autoComplete="off"
                 id="cep"
               />
+              <button type="button" onClick={handleCEP}>
+                Buscar CEP
+              </button>
             </div>
             <div className="inputField">
               <label htmlFor="rua">Rua</label>
               <input
                 maxLength="9"
                 disabled
-                onChange={(e) => setCEPText(e.target.value)}
-                value={CEPresult.logradouro}
+                value={rua}
                 autoComplete="off"
                 id="rua"
               />
@@ -307,8 +333,7 @@ function BuyPage() {
               <input
                 maxLength="9"
                 disabled
-                onChange={(e) => setCEPText(e.target.value)}
-                value={CEPresult.bairro}
+                value={bairro}
                 autoComplete="off"
                 id="bairro"
               />
@@ -318,8 +343,7 @@ function BuyPage() {
               <input
                 maxLength="9"
                 disabled
-                onChange={(e) => setCEPText(e.target.value)}
-                value={CEPresult.localidade}
+                value={cidade}
                 autoComplete="off"
                 id="cidade"
               />
@@ -329,8 +353,7 @@ function BuyPage() {
               <input
                 maxLength="9"
                 disabled
-                onChange={(e) => setCEPText(e.target.value)}
-                value={CEPresult.uf}
+                value={uf}
                 autoComplete="off"
                 id="estado"
               />
@@ -424,7 +447,7 @@ function BuyPage() {
         )}
         {purchaseStep === 3 ? (
           <div>
-            <select onChange={(e) => setPaymentForm(e.target.value)}>
+            <select value={paymentForm} onChange={(e) => setPaymentForm(e.target.value)}>
               <option value={1}>
                 1x de R${" "}
                 {(product.price / 1)

@@ -47,7 +47,7 @@ function ProductPage() {
 
       localStorage.setItem("e-shop:cart", JSON.stringify(cartList))
 
-      toast.success("Product added to cart successfully", {
+      toast.success("Produto adicionado ao carrinho", {
         style: {
           fontSize: "1.6rem",
           fontFamily: "Poppins, sans-serif"

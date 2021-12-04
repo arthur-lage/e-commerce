@@ -30,7 +30,7 @@ function SearchPage() {
     <div className="searchPage">
       <Header />
       <main>
-        <h1 className="title">Searches for "{productToSearch}"</h1>
+        <h1 className="title">Resultados para "{productToSearch}"</h1>
         {products.length > 0 ? (
           <div className="products">
             {products.map((product) => (
@@ -45,7 +45,7 @@ function SearchPage() {
           </div>
         ) : (
           <div className="no-results">
-            <p>No results for "{productToSearch}"</p>
+            <p>Nenhum resultado para "{productToSearch}"</p>
           </div>
         )}
       </main>
