@@ -28,7 +28,7 @@ function Home() {
     <div className="home">
       <Header />
       <main>
-        <h1 className="title">Products</h1>
+        <h1 className="title">Produtos</h1>
         {loading ? (
           <div className="loadingIcon">
             <ReactLoading
