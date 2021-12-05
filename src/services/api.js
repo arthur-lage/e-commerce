@@ -32,6 +32,18 @@ const api = {
   },
   async removeComment(productId, commentId){
     return await axios.patch(`${baseURL}/products/comments/remove/${productId}/${commentId}`)
+  },
+  async login(data){
+    return await axios.post(`${baseURL}/users/login`, data)
+  },
+  async register(data){
+    return await axios.post(`${baseURL}/users/register`, data)
+  },
+  async updateUser(userId, data){
+    return await axios.patch(`${baseURL}/users/update/${userId}`, data)
+  },
+  async deleteUser(userId){
+    return await axios.delete(`${baseURL}/users/delete/${userId}`)
   }
 };
 

@@ -59,7 +59,9 @@ function Header() {
             <Link className="cartButton" to="/cart"><i className="fas fa-shopping-cart"></i></Link>
           </li>
           <li>
-            <Link className="profileButton" to="/profile"><i className="fas fa-user"></i></Link>
+            {/* <Link className="profileButton" to="/profile"><i className="fas fa-user"></i></Link> */}
+            <Link className="loginButton" to="/login">Login</Link>
+            <Link className="registerButton" to="/register">Register</Link>
           </li>
         </ul>
       </nav>
