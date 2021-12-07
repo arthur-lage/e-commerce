@@ -1,6 +1,9 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import Header from "../../components/Header";
+
+import "../../styles/register-page.css";
+
+import LogoImage from "../../images/logo.png";
 
 import api from "../../services/api";
 
@@ -30,12 +33,14 @@ function RegisterPage() {
   };
 
   return (
-    <div className="loginPage">
-      <Header />
-      <h1>Login</h1>
+    <div className="registerPage">
+      <div className="logo">
+        <Link to="/">
+          <img src={LogoImage} alt="E-Shop" />
+        </Link>
+      </div>
       <form>
         <div className="inputField">
-          <label htmlFor="name">Nome</label>
           <input
             type="name"
             id="name"
@@ -45,7 +50,6 @@ function RegisterPage() {
           />
         </div>
         <div className="inputField">
-          <label htmlFor="email">Email</label>
           <input
             type="email"
             id="email"
@@ -55,7 +59,6 @@ function RegisterPage() {
           />
         </div>
         <div className="inputField">
-          <label htmlFor="password">Senha</label>
           <input
             type="password"
             id="password"
@@ -64,11 +67,17 @@ function RegisterPage() {
             placeholder="Digite seu senha"
           />
         </div>
-        <button onClick={handleRegister} type="button">
-          Registrar
+        <button
+          className="registerButton"
+          onClick={handleRegister}
+          type="button"
+        >
+          CRIAR CONTA
         </button>
       </form>
-      <Link to="/login">Já possui uma conta? Fazer login</Link>
+      <Link className="loginLink" to="/login">
+        Já possui uma conta? Faça login
+      </Link>
     </div>
   );
 }

@@ -1,6 +1,9 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import Header from "../../components/Header";
+
+import '../../styles/login-page.css'
+
+import LogoImage from "../../images/logo.png";
 
 import api from "../../services/api";
 
@@ -29,11 +32,13 @@ function LoginPage() {
 
   return (
     <div className="loginPage">
-      <Header />
-      <h1>Login</h1>
+      <div className="logo">
+        <Link to="/">
+          <img src={LogoImage} alt="E-Shop" />
+        </Link>
+      </div>
       <form>
         <div className="inputField">
-          <label htmlFor="email">Email</label>
           <input
             type="email"
             id="email"
@@ -43,7 +48,6 @@ function LoginPage() {
           />
         </div>
         <div className="inputField">
-          <label htmlFor="password">Senha</label>
           <input
             type="password"
             id="password"
@@ -52,11 +56,11 @@ function LoginPage() {
             placeholder="Digite sua senha"
           />
         </div>
-        <button onClick={handleLogin} type="button">
-          Login
+        <button className="loginButton" onClick={handleLogin} type="button">
+          FAZER LOGIN
         </button>
       </form>
-      <Link to="/register">Não possui uma conta? Criar uma conta</Link>
+      <Link className="registerLink" to="/register">Ainda não possui uma conta? Crie uma conta</Link>
     </div>
   );
 }

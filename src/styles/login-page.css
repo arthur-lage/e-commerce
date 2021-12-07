@@ -1,0 +1,124 @@
+.loginPage {
+  background: linear-gradient(to bottom, #2436dd, #4c85f5);
+  height: 100vh;
+  outline: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.loginPage > * {
+  animation: fade 0.5s ease forwards 1 normal; 
+}
+
+.loginPage .logo img {
+  width: 20rem;
+  height: 16.1rem;
+}
+
+.loginPage form {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.loginPage .inputField:first-child {
+  margin-top: 13.3rem;
+  margin-bottom: 6rem;
+}
+
+.loginPage .inputField:last-child {
+  margin-bottom: 11.2rem;
+}
+
+.loginPage .inputField input {
+  text-align: center;
+  font-family: "Montserrat", sans-serif;
+  font-size: 2.8rem;
+  font-weight: 500;
+  width: 113rem;
+  box-shadow: 0px 10px 5px rgba(0, 0, 0, 0.25);
+  border-radius: 8px;
+  color: #222;
+  background: #fff;
+  height: 8rem;
+  border: 0;
+}
+
+.loginPage .inputField input::placeholder {
+  color: #444;
+}
+
+.loginPage .loginButton {
+  background: #1e30d0;
+  box-shadow: 0px 10px 5px rgba(0, 0, 0, 0.25);
+  border-radius: 8px;
+  margin-top: 11rem;
+  margin-bottom: 5rem;
+  font-weight: 500;
+  font-size: 2.8rem;
+  font-family: "Montserrat", sans-serif;
+  color: #fff;
+  border: 0;
+  width: 60rem;
+  height: 8rem;
+  transition: 0.2s ease;
+  cursor: pointer;
+}
+
+.loginPage .loginButton:hover {
+  filter: brightness(1.2);
+}
+
+.loginPage .registerLink {
+  font-size: 2.2rem;
+  color: #fff;
+  text-decoration: none;
+  font-weight: 700;
+  font-family: "Montserrat", sans-serif;
+}
+
+.loginPage .registerLink:hover {
+  text-decoration: underline;
+}
+
+@keyframes fade {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+@media (max-width: 1366px){
+    .loginPage .logo img{
+        width: 12rem;
+        height: 10.05rem;
+    }
+
+    .loginPage .inputField:first-child{
+        margin-top: 5rem;
+        margin-bottom: 3rem;
+    }
+
+    .loginPage .inputField input{
+        height: 6rem;
+        width: 90rem;
+        font-size: 2.2rem;
+    }
+    
+    .loginPage .loginButton{
+        width: 40rem;
+        height: 6rem;
+        font-size: 2.2rem;
+        margin-top: 5rem;
+    }
+
+    .loginPage .registerLink{
+        font-size: 2rem;
+    }
+}
