@@ -1,41 +1,33 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 
-import { useNavigate, useLocation } from 'react-router-dom'
+import { useNavigate, useLocation } from "react-router-dom";
 
 import LogoImage from "../images/logo.png";
+import CartIcon from "../images/cart.svg";
+import SearchIcon from "../images/search.svg";
 
 import "../styles/header.css";
 
 function Header() {
-  const [searchActive, setSearchActive] = useState(false);
   const [searchText, setSearchText] = useState("");
-  const navigate = useNavigate()
-  const location = useLocation()
+  const navigate = useNavigate();
+  const location = useLocation();
 
   const handleHome = () => {
-    if(location.pathname === "/"){
-      navigate(0)
+    if (location.pathname === "/") {
+      navigate(0);
     }
-  }
+  };
 
   const handleSearch = () => {
-    if(searchActive && searchText !== ""){
-      if(location.pathname.includes("/search")){
-        navigate('/search/' + searchText)
-        navigate(0)
-      } else {
-        navigate('/search/' + searchText)
-      }
+    if (searchText === "") {
+      return;
     }
 
-    if(!searchActive) {
-      setSearchActive(true)
-      document.querySelector(".searchInput").focus()
-    }
-
-    if(searchActive && searchText === "") setSearchActive(false)
-  }
+    navigate("/search/" + searchText);
+    navigate(0);
+  };
 
   return (
     <header className="header">
@@ -49,19 +41,30 @@ function Header() {
               type="text"
               value={searchText}
               onChange={(e) => setSearchText(e.target.value)}
-              className={`${searchActive ? "active" : ""} searchInput`}
+              placeholder="Buscar produtos, marcas, etc..."
+              className="searchInput"
             />
             <button className="searchButton" onClick={handleSearch}>
-              <i className="fas fa-search"></i>
+              <img src={SearchIcon} alt="Pesquisar" title="Pesquisar" />
             </button>
           </li>
-          <li>
-            <Link className="cartButton" to="/cart"><i className="fas fa-shopping-cart"></i></Link>
+          <li className="cart">
+            <Link className="cartButton" to="/cart">
+              <img
+                src={CartIcon}
+                alt="Carrinho de Compras"
+                title="Carrinho de Compras"
+              />
+            </Link>
           </li>
-          <li>
+          <li className="registerAndLogin">
             {/* <Link className="profileButton" to="/profile"><i className="fas fa-user"></i></Link> */}
-            <Link className="loginButton" to="/login">Login</Link>
-            <Link className="registerButton" to="/register">Register</Link>
+            <Link title="Registrar" className="registerButton" to="/register">
+              REGISTRAR
+            </Link>
+            <Link title="Login" className="loginButton" to="/login">
+              LOGIN
+            </Link>
           </li>
         </ul>
       </nav>
