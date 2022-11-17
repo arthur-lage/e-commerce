@@ -1,0 +1,11 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html {
+  font-size: 62.5%;
+}
+
+.header-link {
+  @apply text-2xl font-medium font-quicksand   text-zinc-100 hover:text-zinc-300 transition-all duration-150;
+}
