@@ -2,7 +2,8 @@ import { useState } from "react";
 
 import { Header } from "../components/Header";
 import { ProductList } from "../components/ProductList";
-import { IProduct } from '../components/ProductCard';
+import { IProduct } from "../components/ProductCard";
+import Head from "next/head";
 
 export default function Home() {
   const [products, setProducts] = useState<IProduct[]>([
@@ -105,14 +106,22 @@ export default function Home() {
   ]);
 
   return (
-    <div>
-      <Header />
+    <>
+      <Head>
+        <title>e-commerce - Home</title>
+      </Head>
+      
+      <div>
+        <Header />
 
-      <main className="mt-[15rem] px-32">
-        <h2 className="mb-12 text-slate-900 text-5xl font-bold font-quicksand">Products</h2>
+        <main className="mt-[15rem] px-32">
+          <h2 className="mb-12 text-slate-900 text-5xl font-bold font-quicksand">
+            Products
+          </h2>
 
-        <ProductList products={products} />
-      </main>
-    </div>
+          <ProductList products={products} />
+        </main>
+      </div>
+    </>
   );
 }

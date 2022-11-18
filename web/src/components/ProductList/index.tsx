@@ -7,7 +7,7 @@ interface IProductList {
 
 export function ProductList({ products }: IProductList) {
   return (
-    <div className="flex items-center justify-between flex-wrap">
+    <div className="flex  justify-between flex-wrap gap-y-12">
       {products.map((product) => (
         <ProductCard
           id={product.id}

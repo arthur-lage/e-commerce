@@ -34,7 +34,7 @@ export function Header() {
           className="rounded-tr-md hover:bg-orange-700 transition-all duration-150 focus:bg-orange-500 cursor-pointer rounded-br-md bg-orange-600 flex items-center justify-center w-[4rem] h-[4rem]"
           type="submit"
         >
-          <MagnifyingGlass weight="bold" className="text-3xl text-gray-900" />
+          <MagnifyingGlass weight="bold" className="text-3xl text-white" />
         </button>
       </form>
 

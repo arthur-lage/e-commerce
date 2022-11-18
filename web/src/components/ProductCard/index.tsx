@@ -10,11 +10,11 @@ export interface IProduct {
 
 export function ProductCard(product: IProduct) {
   return (
-    <div>
-      <Image width={240} height={240} src={product.image} alt={product.name} />
-      <p>{product.name}</p>
-      <b>${product.price}</b>
-      <Link to={`/products/${product.id}`}>Buy</Link>
-    </div>
+    <a className="rounded-2xl pb-4 hover:bg-gray-200 bg-gray-50 transition-all duration-150 flex flex-col w-[22rem]" href={`/product/${product.id}`}>
+      <Image width={300} height={300} className="object-cover rounded-t-2xl w-full h-[20rem] mb-4" src={product.image} alt={product.name} />
+      <p className="px-3 text-3xl font-medium font-quicksand text-zinc-900">{product.name}</p>
+      <p className="px-3 font-bold text-4xl font-quicksand my-4">${product.price}</p>
+      <p className="px-3 font-quicksand text-3xl">10x of <span className="font-bold">${product.price / 10}</span></p>
+    </a>
   );
 }
